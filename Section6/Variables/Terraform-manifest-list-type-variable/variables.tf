@@ -10,14 +10,14 @@ terraform apply resource.out
 */
 variable "instance_type" {
   description = "EC2 instance to use"
-  type        = string
-  default     = "t2.micro"
+  type        = list(string)
+  default     = ["t2.micro", "t3.small", "t3.micro", "t3.large", "t3.xlarge"]
 }
 
 variable "availability_zone" {
   description = "AZ where to launch the instance"
-  type        = string
-  default     = "us-east-2a"
+  type        = list(string)
+  default     = ["us-east-2a", "us-east-2b", "us-east-2c", "us-east-2f"]
 }
 
 variable "aws_region" {

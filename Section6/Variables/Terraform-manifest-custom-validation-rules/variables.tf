@@ -2,22 +2,40 @@ variable "ec2_ami" {
   description = "Ec2 AMI ID to use"
   type        = string
   default     = "ami-0a606d8395a538502"
+  validation {
+    condition     = substr(var.ec2_ami, 0, 3) == "ami" #length(var.ec2_ami) == 21
+    error_message = "The ec2_ami value must be a valid AMI id, starting with \"ami\""
+  }
 }
 
 /*To override the default intance type during the terraform execution, just run
 terraform plan -var="instance_type=t3.micro" -out resource.out
 terraform apply resource.out 
 */
+/*
 variable "instance_type" {
   description = "EC2 instance to use"
-  type        = string
-  default     = "t2.micro"
+  type        = list(string)
+  default     = ["t2.micro", "t3.small", "t3.micro", "t3.large", "t3.xlarge"]
 }
+*/
+variable "instance_type" {
+  description = "EC2 instance to use"
+  type        = map(string)
+  default = {
+    "t2micro" : "t2.micro"
+    "t3small" : "t3.small"
+    "t3micro" : "t3.micro"
+    "t3large" : "t3.large"
+    "t3xlarge" : "t3.xlarge"
+  }
+}
+
 
 variable "availability_zone" {
   description = "AZ where to launch the instance"
-  type        = string
-  default     = "us-east-2a"
+  type        = list(string)
+  default     = ["us-east-2a", "us-east-2b", "us-east-2c", "us-east-2f"]
 }
 
 variable "aws_region" {
