@@ -11,7 +11,7 @@ resource "aws_instance" "ec2instance" {
   ami                    = data.aws_ami.amzlinux2.id
   instance_type          = var.instance_type
   user_data              = file("${path.module}/app1-install.sh")
-  vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
+  vpc_security_group_ids = [aws_security_group.vpc-ssh2.id, aws_security_group.vpc-web.id]
   for_each               = toset(data.aws_availability_zones.my_azones.names) # Creating resources in different AZ with for_each function and converting list to set of list
   availability_zone      = each.key
   key_name               = var.ec2_keypair
