@@ -1,5 +1,5 @@
 variable "bucket_name" {
-  description = "Unique Name Across The Enire AWS Cloud"
+  description = "Unique Name Across The Entire AWS Cloud"
   type        = string
 }
 
