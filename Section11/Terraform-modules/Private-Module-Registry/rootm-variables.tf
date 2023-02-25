@@ -6,7 +6,7 @@ variable "aws_region" {
 }
 
 variable "s3_bucket_name" {
-  description = "Unique Name Across The Enire AWS Cloud"
+  description = "Unique Name Across The Entire AWS Cloud"
   type        = string
   default     = "random-s3-static-website2"
 }
